@@ -4,7 +4,10 @@ var app = express();
 var bodyParser = require("body-parser");
 var morgan = require("morgan");
 var mongoose = require("mongoose");
+var jwt = require("jsonwebtoken");
 var port = process.env.PORT || 8888;
+
+var secret = "7f7256e4f258f755473291bb7cb67c54";
 
 // Models
 var User = require('./app/models/user');
@@ -34,10 +37,68 @@ app.get('/', function(req, res) {
 
 var apiRouter = express.Router();
 
-// Log requests
+// Authenticate user
+apiRouter.post('/authenticate', function(req, res) {
+  User.findOne({
+    username: req.body.username
+  })
+    .select("name username password")
+    .exec(function(err, user) {
+      if(err) throw err;
+      if(!user) {
+        res.status(403);
+        res.json({
+          success: false,
+          message: 'Authentication failed'
+        });
+      }
+      else {
+        if(!user.comparePassword(req.body.password)) {
+          res.status(403);
+          res.json({
+            success: false,
+            message: 'Authentication failed'
+          });
+        }
+        else {
+          var token = jwt.sign({
+            name: user.name,
+            username: user.username
+          }, secret, {
+            expiresInMinutes: 1440 // expires in 24 hs
+          });
+          res.json({
+            success: true,
+            token: token
+          });
+        }
+      }
+    });
+});
+
+// Handle authenticated routes
 apiRouter.use(function(req, res, next) {
-  console.log("Somebody arrived! :-)");
-  next();
+  var token = req.headers['access-token'];
+  if(token) {
+    jwt.verify(token, secret, function(err, decoded) {
+      if(err) {
+        res.status(403).send({
+          success: false,
+          message: 'Invalid token'
+        });
+      }
+      else {
+        req.decoded = decoded;
+        next();
+      }
+    });
+  }
+  else {
+    res.status(403).send({
+      success: false,
+      message: 'No token provided'
+    });
+  }
 });
 
 // ---------- API routes ---------- //
@@ -45,6 +106,11 @@ apiRouter.get('/', function(req, res) {
   res.json({
     message: "Super mensaje desde la api! :-)"
   });
+});
+
+// Get current user information
+apiRouter.get('/me', function(req, res) {
+  res.send(req.decoded);
 });
 
 // Users routes
