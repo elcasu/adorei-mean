@@ -18,5 +18,12 @@ module.exports = function(handlers) {
   apiRouter.put('/users/:user_id', handlers.usersHandler.update);
   apiRouter.delete('/users/:user_id', handlers.usersHandler.remove);
 
+  // Categories
+  apiRouter.get('/categories', handlers.categoriesHandler.all);
+  apiRouter.post('/categories', handlers.categoriesHandler.create);
+  apiRouter.get('/categories/:category_id', handlers.categoriesHandler.show);
+  apiRouter.put('/categories/:category_id', handlers.categoriesHandler.update);
+  apiRouter.delete('/categories/:category_id', handlers.categoriesHandler.remove);
+
   return apiRouter;
 }

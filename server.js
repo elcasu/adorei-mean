@@ -10,6 +10,8 @@ var config = require("./config");
 // Define application handlers
 var handlers = {
   usersHandler: require("./app/handlers/usersHandler"),
+  productsHandler: require("./app/handlers/productsHandler"),
+  categoriesHandler: require("./app/handlers/categoriesHandler"),
   staticHandler: require("./app/handlers/staticHandler")
 };
 
