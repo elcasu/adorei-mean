@@ -18,7 +18,7 @@ function create(req, res) {
 
 function update(req, res) {
   Category.findById(req.params.category_id, function(err, category) {
-    if(err) return res.status(404).send(err);
+    if(err) return res.status(500).send(err);
     if(req.body.name) category.name = req.body.name;
     if(req.body.description) category.description = req.body.description;
 
@@ -38,7 +38,7 @@ function show(req, res) {
 
 function all(req, res) {
   Category.find(function(err, categories) {
-    if(err) return res.status(401).send(err);
+    if(err) return res.status(500).send(err);
     res.send(categories);
   });
 }
@@ -47,7 +47,7 @@ function remove(req, res) {
   Category.remove({
     _id: req.params.category_id
   }, function(err, category) {
-    if(err) return res.status(401).send(err);
+    if(err) return res.status(500).send(err);
     res.send({ message: "Category deleted" });
   });
 }
