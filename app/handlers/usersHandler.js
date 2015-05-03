@@ -4,9 +4,9 @@ var User = require("../models/user");
 
 function authenticate(req, res) {
   User.findOne({
-    username: req.body.username
+    email: req.body.email
   })
-  .select("name username password")
+  .select("name email password")
   .exec(function(err, user) {
     if(err) throw err;
     if(!user) {
@@ -27,7 +27,7 @@ function authenticate(req, res) {
       else {
         var token = jwt.sign({
           name: user.name,
-          username: user.username
+          email: user.email
         }, config.secret, {
           expiresInMinutes: 1440 // expires in 24 hs
         });
@@ -43,7 +43,7 @@ function authenticate(req, res) {
 function create(req, res) {
   var user = new User();
   user.name = req.body.name;
-  user.username = req.body.username;
+  user.email = req.body.email;
   user.password = req.body.password;
   user.save(function(err) {
     if(err) {
@@ -66,7 +66,7 @@ function update(req, res) {
   User.findById(req.params.user_id, function(err, user) {
     if(err) res.send(err);
     if(req.body.name) user.name = req.body.name;
-    if(req.body.username) user.name = req.body.username;
+    if(req.body.email) user.name = req.body.email;
     if(req.body.password) user.password = req.body.password;
 
     user.save(function(save_error) {
