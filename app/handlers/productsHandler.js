@@ -13,7 +13,10 @@ function create(req, res) {
 
 function update(req, res) {
   Product.findById(req.params.product_id, function(err, product) {
-    if(err) return res.status(404).send(err);
+    if(err) return res.status(500).send(err);
+    if(!product) {
+      return res.status(404).send({ message: "Product not found" });
+    }
     if(req.body.name) product.name = req.body.name;
     if(req.body.category_id) product.category = req.body.category_id;
     if(req.body.price) product.price = req.body.price;
