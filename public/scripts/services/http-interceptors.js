@@ -5,34 +5,37 @@ angular.module("services")
   // Http interceptor for handling responses
   .factory("apiHttpInterceptor", ["$window", "$location", "ipCookie", "appConfig",
     function($window, $location, ipCookie, appConfig) {
-      var authHeaders = ['access-token', 'client', 'uid', 'expiry', 'token-type'];
-      function getRemoteDomain(remoteUrl) {
-          return remoteUrl.replace(/^(https?:\/\/[^\/]+\/).*$/, "$1");
+      var apiDomain = getRemoteDomain(appConfig.apiUrl);;
+      var tokenParamName = "access-token";
+
+      function getRemoteDomain(remoteDomain) {
+          return remoteDomain.replace(/^(https?:\/\/[^\/]+\/).*$/, "$1");
       }
       return {
         request: function(req) {
-          var remoteUrl = getRemoteDomain(req.url);
-          if(remoteUrl == appConfig.apiUrl) {
-            for(var a in authHeaders) {
-              var hdr = authHeaders[a];
-              if(ipCookie(hdr)) {
-                req.headers[hdr] = ipCookie(hdr);
-              }
+          var remoteDomain = getRemoteDomain(req.url);
+
+          // Only take care of requests to our backend
+          if(remoteDomain == apiDomain) {
+            console.log(ipCookie(tokenParamName));
+            if(ipCookie(tokenParamName)) {
+              req.headers[tokenParamName] = ipCookie(tokenParamName);
             }
           }
           return req;
         },
         response: function(resp) {
-          if(resp.status == 401) {
+          if(resp.status == 403) {
             // If access denied, redirect to login page
             $window.location.assign($state.href("admin"));
             return resp;
           }
-          var remoteUrl = getRemoteDomain(resp.config.url);
-          if(remoteUrl == appConfig.apiUrl) {
-            for(var a in authHeaders) {
-              var hdr = authHeaders[a];
-              ipCookie(hdr, resp.headers(hdr));
+          var remoteDomain = getRemoteDomain(resp.config.url);
+
+          // Only on backend responses
+          if(remoteDomain == apiDomain) {
+            if(resp.data.token) {
+              ipCookie(tokenParamName, resp.data.token);
             }
           }
           return resp;

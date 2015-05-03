@@ -9,7 +9,7 @@ angular.module("services", [])
 
       return {
         submitLogin: function(form) {
-          return $http.post(apiUrl + "auth/sign_in", {
+          return $http.post(apiUrl + "authenticate", {
             "email": form.email,
             "password": form.password
           });
