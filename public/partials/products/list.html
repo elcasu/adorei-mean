@@ -1,0 +1,21 @@
+<div class="main-subheader">
+  <h2>Listado de productos</h2>
+  <span>
+    <a ui-sref="admin.products_new" class="btn btn-success">Nuevo producto</a>
+  </span>
+</div>
+<table class="table" ng-controller="ProductListCtrl">
+  <tr>
+    <th>Nombre</th>
+    <th>Precio de venta</th>
+    <th>Acciones</th>
+  </tr>
+  <tr ng-repeat="product in products">
+    <td>{{ product.name }}</td>
+    <td>${{ product.price }}</td>
+    <td class="list-actions">
+      <a ui-sref="admin.products_edit({ id: product.id })" class="glyphicon glyphicon-edit" title="Editar"></a>
+      <a href="" ng-click="removeProduct(product)" class="glyphicon glyphicon-remove" title="Eliminar"></a>
+    </td>
+  </tr>
+</table>

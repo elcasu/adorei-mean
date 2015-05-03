@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="adoreiApp">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Adorei - Control de Stock</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/application.css" />
+
+    <!-- 3rd party stylesheets -->
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+
+    <!-- 3rd party modules -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-cookie/angular-cookie.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-file-upload/angular-file-upload.min.js"></script>
+    <script src="bower_components/angular-flash-messages/angular-flash.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+
+    <!-- App configuration -->
+    <script src="scripts/config.js"></script>
+
+    <!-- App initialization -->
+    <script src="scripts/application.js"></script>
+
+    <!-- Controllers -->
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/products.js"></script>
+    <script src="scripts/controllers/categories.js"></script>
+    <script src="scripts/controllers/modals.js"></script>
+    <script src="scripts/controllers/sidebar.js"></script>
+    <script src="scripts/controllers/stock.js"></script>
+
+    <!-- App routing -->
+    <script src="scripts/routes.js"></script>
+
+    <!-- Services -->
+    <script src="scripts/services/api-client.js"></script>
+    <script src="scripts/services/http-interceptors.js"></script>
+    <script src="scripts/services/image-uploader.js"></script>
+    <script src="scripts/services/session-manager.js"></script>
+
+    <!-- Directives -->
+    <script src="scripts/directives/auth-src.js"></script>
+    <script src="scripts/directives/ng-thumb.js"></script>
+    <script src="scripts/directives/sidebar.js"></script>
+
+  </head>
+  <body>
+    <div class="header">
+      <h1>Adorei - Control de Stock</h1>
+    </div>
+    <sidebar ng-if="session.userIsAuthenticated()"></sidebar>
+    <div class="main-wrapper">
+      <flash:messages></flash:messages>
+      <div ui-view></div>
+    </div>
+  </body>
+</html>

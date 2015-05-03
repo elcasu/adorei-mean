@@ -1,0 +1,16 @@
+<div class="signin-wrapper panel panel-default col-lg-4">
+  <div class="panel-body">
+    <form ng-submit="submitLogin(loginForm)" role="form" ng-controller="SigninCtrl">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" ng-model="loginForm.email" required="required" class="form-control"/>
+      </div>
+
+      <div class="form-group">
+        <label>Contrase&ntilde;a</label>
+        <input type="password" name="password" ng-model="loginForm.password" required="required" class="form-control"/>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg">Ingresar</button>
+    </form>
+  </div>
+</div>

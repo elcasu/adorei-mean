@@ -1,0 +1,25 @@
+<div class="form-group">
+  <label for="name">Categor&iacute;a</label>
+  <ui-select ng-model="selectedCategory">
+    <ui-select-match ng-placeholder="Seleccione una categoría...">{{ $select.selected.name }}</ui-select-match>
+    <ui-select-choices repeat="category in categories | filter: $select.search track by category.name">
+      <div ng-bind-html="category.name | highlight: $select.search"></div>
+    </ui-select-choices>
+  </ui-select>
+  <p ng-show="stockForm.name.$invalid && !stockForm.name.$pristine">
+    Este campo es obligatorio
+  </p>
+</div>
+
+<div class="form-group">
+  <label for="name">Producto</label>
+  <ui-select ng-model="selectedProduct">
+    <ui-select-match>{{ $select.selected.name }}</ui-select-match>
+    <ui-select-choices repeat="product in products | filter: $select.search track by product.name">
+      <div ng-bind-html="product.name | highlight: $select.search"></div>
+    </ui-select-choices>
+  </ui-select>
+  <p ng-show="stockForm.name.$invalid && !stockForm.name.$pristine">
+    Este campo es obligatorio
+  </p>
+</div>

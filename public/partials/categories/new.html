@@ -1,0 +1,10 @@
+<div class="main-subheader">
+  <h2>Nueva categor&iacute;a</h2>
+</div>
+<div class="panel" ng-controller="CategoryNewCtrl">
+  <form name="categoryForm" method="post" novalidate class="simple-form" ng-submit="addCategory(category)">
+    <div ng-include="'partials/categories/form.html'"></div>
+    <input type="submit" class="btn btn-success" ng-disabled="categoryForm.$invalid" value="Agregar" />
+    <a href="#/categories" class="btn btn-default">Volver al listado</a>
+  </form>
+</div>

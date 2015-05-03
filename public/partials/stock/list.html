@@ -1,0 +1,30 @@
+<div class="main-subheader">
+  <h2>Stock</h2>
+  <span>
+    <a ui-sref="admin.stock_new" class="btn btn-success">Nuevo ingreso</a>
+  </span>
+</div>
+<table class="table" ng-controller="StockListCtrl">
+  <tr>
+    <th>Fecha</th>
+    <th>Categoría</th>
+    <th>Producto</th>
+    <th>Proveedor</th>
+    <th>Talle</th>
+    <th>Color</th>
+    <th>Stock</th>
+    <th>Acciones</th>
+  </tr>
+  <tr ng-repeat="stockItem in stock">
+    <td>{{ stockItem.date }}</td>
+    <td>{{ stockItem.product.category }}</td>
+    <td>{{ stockItem.provider }}</td>
+    <td>{{ stockItem.size }}</td>
+    <td>{{ stockItem.color }}</td>
+    <td>{{ stockItem.quantity }}</td>
+    <td class="list-actions">
+      <a ui-sref="admin.stock_edit({ id: stock.id })" class="glyphicon glyphicon-edit" title="Editar"></a>
+      <a href="" ng-click="removeStock(stock)" class="glyphicon glyphicon-remove" title="Eliminar"></a>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.fix {
+  display: block;
+  clear: both;
+}
+.header {
+  width: 100%;
+  height: 60px;
+  clear: both;
+  background-color: #0af;
+  color: #fff;
+}
+.header h1 {
+  margin: 0;
+  padding: 13px 25px;
+  font-size: 26px;
+}
+.sidebar {
+  width: 15%;
+  float: left;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar ul.menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul.menu li {
+  height: 50px;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0 0 30px;
+}
+
+.main-wrapper {
+  width: 85%;
+  float: left;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+
+.main-subheader {
+  clear: both;
+  height: 80px;
+}
+
+.main-subheader h2 {
+  float: left;
+}
+
+.main-subheader span {
+  float: right;
+  margin-top: 20px;
+}
+
+.form-group p {
+  color: #d00;
+}
+
+input.ng-invalid.ng-dirty, select.ng-invalid.ng-dirty {
+  border: 1px solid red;
+}
+
+.list-actions {
+  text-align: center;
+}
+
+.list-actions a {
+  margin-right: 10px;
+}
+
+.glyphicon-remove, .glyphicon-remove:hover {
+  color: #d00;
+  text-decoration: none;
+}
+
+.glyphicon-edit, .glyphicon-edit:hover {
+  text-decoration: none;
+}
+
+.signin-wrapper {
+  margin: 10px auto;
+  float: none;
+}
+
+ol {
+  list-style-type: none;
+}

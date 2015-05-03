@@ -25,11 +25,13 @@ app.use(require("./app/middleware/cors"));
 // Set database connection
 mongoose.connect(config.database.development);
 
+// Set static content path
+app.use(express.static(__dirname + "/public"));
+
 // Log requests to console
 app.use(morgan('dev'));
 
 // Routes
-app.use('/', require("./app/routes/public_routes")(handlers));
 app.use('/api', require("./app/routes/api_routes")(handlers));
 
 app.listen(config.port);

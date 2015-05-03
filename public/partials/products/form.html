@@ -1,0 +1,26 @@
+<div class="form-group">
+  <label for="name">Nombre</label>
+  <input type="text" name="name" id="name" ng-model="product.name" class="form-control" required />
+  <p ng-show="productForm.name.$invalid && !productForm.name.$pristine">El nombre es obligatorio</p>
+</div>
+<div class="form-group">
+  <label for="category">Categor&iacute;a</label>
+  <select name="category" ng-model="product.category" ng-options="category.name for category in categories track by category.id" class="form-control" required>
+    <option value="">Seleccione la categor&iacute;a</option>
+  </select>
+  <p ng-show="productForm.category.$invalid && !productForm.category.$pristine">El campo categor&iacute;a es obligatorio</p>
+</div>
+<div class="form-group">
+  <label for="image">Imagen</label>
+  <div ng-show="product.image != ''" class="form-image-wrapper">
+    <img ng-if="productLoaded" auth-src="http://localhost:54321/images/product/{{ product.id }}/200x200?{{ guid }}" width="300" />
+  </div>
+  <input name="image" type="file" nv-file-select="" uploader="uploader" ng-hide="uploader.queue.length > 0" />
+  <div ng-include="'partials/shared/uploader_template.html'" ng-show="uploader.queue.length > 0"></div>
+</div>
+<div class="fix"></div>
+<div class="form-group">
+  <label for="price">Precio de venta</label>
+  <input type="text" name="price" id="price" ng-model="product.price" class="form-control" required />
+  <p ng-show="productForm.price.$invalid && !productForm.price.$pristine">El precio de venta es obligatorio</p>
+</div>

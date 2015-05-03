@@ -1,0 +1,11 @@
+<div class="main-subheader">
+  <h2>Editar categor&iacute;a</h2>
+</div>
+<div class="panel" ng-controller="CategoryEditCtrl">
+  <form name="categoryForm" method="post" novalidate class="simple-form" ng-submit="updateCategory(category)">
+    <div ng-include="'partials/categories/form.html'"></div>
+    <input type="submit" class="btn btn-success" ng-disabled="categoryForm.$invalid" value="Actualizar" />
+    <a href="#/categories" class="btn btn-default">Volver al listado</a>
+  </form>
+</div>
+
