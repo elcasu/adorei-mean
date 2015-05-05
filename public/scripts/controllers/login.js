@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("controllers", [])
+angular.module("controllers")
 
   // Login
   .controller("SigninCtrl", ['$scope', '$window', '$state', 'flash', 'StockApiClient',

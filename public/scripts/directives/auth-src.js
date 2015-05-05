@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('directives', [])
+angular.module('directives')
 
   .directive("authSrc", ["$http",
     function($http) {

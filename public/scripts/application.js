@@ -1,5 +1,9 @@
 'use strict';
 
+angular.module("services", []);
+angular.module("controllers", []);
+angular.module('directives', []);
+
 angular.module("adoreiApp", [
   "ui.router",
   "ui.bootstrap",

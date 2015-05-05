@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("services", [])
+angular.module("services")
 
   // REST API client
   .factory("StockApiClient", ["appConfig", "$http", "ipCookie",
