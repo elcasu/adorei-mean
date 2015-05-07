@@ -1,4 +1,8 @@
 # Adorei - Control de stock
+
+## TODO
+- Make API with versioned urls
+
 ## Backend
 
 RESTFul API that handles all the application logic
