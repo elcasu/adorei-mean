@@ -57,7 +57,7 @@ angular.module("controllers")
         $scope.product = product;
         $scope.productLoaded = true;
         angular.forEach($scope.categories, function(category) {
-          if(category.id == product.category_id) {
+          if(category._id == product.category_id) {
             $scope.product.category = category;
           }
         });

@@ -24,15 +24,9 @@ angular.module("services")
           });
         },
         update: function(product) {
+          product.category_id = product.category._id;
           $http.put(appConfig.apiUrl + "products/" + product._id, {
-            "product": {
-              code: product.code,
-              name: product.name,
-              category: product.category._id,
-              cost_price: product.cost_price,
-              price: product.price,
-              stock: product.stock
-            },
+            product: product,
             tmp_image: product.tmp_image
           });
         }
