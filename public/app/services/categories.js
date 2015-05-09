@@ -1,17 +1,17 @@
 'use strict';
 
 angular.module("services")
-  .factory("Category", ['$http',
-    function($http) {
+  .factory("Category", ['$http', 'appConfig',
+    function($http, appConfig) {
       return {
         all: function() {
-          return $http.get(apiUrl + 'categories');
+          return $http.get(appConfig.apiUrl + 'categories');
         },
         find: function(id) {
-          return $http.get(apiUrl + "categories/" + id);
+          return $http.get(appConfig.apiUrl + "categories/" + id);
         },
         create: function(category) {
-          $http.post(apiUrl + "categories", {
+          $http.post(appConfig.apiUrl + "categories", {
             category: {
               name: category.name,
               description: category.description
@@ -19,7 +19,7 @@ angular.module("services")
           });
         },
         update: function(category) {
-          return $http.put(apiUrl + "categories/" + category.id, {
+          return $http.put(appConfig.apiUrl + "categories/" + category.id, {
             category: {
               name: category.name,
               description: category.description
@@ -27,7 +27,7 @@ angular.module("services")
           });
         },
         remove: function(category) {
-          return $http.delete(apiUrl + 'categories/' + category.id);
+          return $http.delete(appConfig.apiUrl + 'categories/' + category.id);
         }
       };
     }
