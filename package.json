@@ -1,7 +1,7 @@
 {
-  "name": "node-skel",
+  "name": "stock-manager",
   "version": "1.0.0",
-  "description": "Testing RESTful API",
+  "description": "Stock manager application",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,6 +14,7 @@
     "express": "^4.12.3",
     "jsonwebtoken": "^5.0.0",
     "mongoose": "^4.0.2",
-    "morgan": "^1.5.2"
+    "morgan": "^1.5.2",
+    "multer": "^0.1.8"
   }
 }
