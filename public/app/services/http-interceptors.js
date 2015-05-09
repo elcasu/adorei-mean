@@ -17,7 +17,6 @@ angular.module("services")
 
           // Only take care of requests to our backend
           if(remoteDomain == apiDomain) {
-            console.log(ipCookie(tokenParamName));
             if(ipCookie(tokenParamName)) {
               req.headers[tokenParamName] = ipCookie(tokenParamName);
             }
