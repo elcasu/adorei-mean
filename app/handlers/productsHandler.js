@@ -37,7 +37,7 @@ function show(req, res) {
 }
 
 function all(req, res) {
-  Product.find().populate('category').exec(function(err, products) {
+  Product.find().populate('category').sort({ name: 'asc' }).exec(function(err, products) {
     if(err) return res.status(500).send(err);
     res.send(products);
   });

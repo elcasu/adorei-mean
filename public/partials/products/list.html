@@ -14,7 +14,7 @@
     <td>{{ product.name }}</td>
     <td>${{ product.price }}</td>
     <td class="list-actions">
-      <a ui-sref="admin.products_edit({ id: product.id })" class="glyphicon glyphicon-edit" title="Editar"></a>
+      <a ui-sref="admin.products_edit({ id: product._id })" class="glyphicon glyphicon-edit" title="Editar"></a>
       <a href="" ng-click="removeProduct(product)" class="glyphicon glyphicon-remove" title="Eliminar"></a>
     </td>
   </tr>

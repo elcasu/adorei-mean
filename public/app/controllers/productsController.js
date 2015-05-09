@@ -29,7 +29,7 @@ angular.module("controllers")
   .controller("ProductNewCtrl", ['$scope', '$window', '$state', 'Category', 'Product', 'ImageUploader', 'appConfig',
     function($scope, $window, $state, Category, Product, ImageUploader, appConfig) {
       $scope.addProduct = function(product) {
-        StockApiClient.addProduct(product);
+        Product.create(product);
         $window.location.assign($state.href("admin.products"));
       }
       Category.all().success(function(categories) {
@@ -43,11 +43,11 @@ angular.module("controllers")
   ])
 
   // Edit product
-  .controller("ProductEditCtrl", ['$scope', '$stateParams', '$window', '$state', 'StockApiClient', 'ImageUploader',
-    function($scope, $stateParams, $window, $state, StockApiClient, ImageUploader) {
+  .controller("ProductEditCtrl", ['$scope', '$stateParams', '$window', '$state', 'Product', 'Category', 'ImageUploader',
+    function($scope, $stateParams, $window, $state, Product, Category, ImageUploader) {
       $scope.productLoaded = false;
       $scope.updateProduct = function(product) {
-        StockApiClient.updateProduct(product);
+        Product.update(product);
         $window.location.assign($state.href('admin.products'));
       }
       Category.all().success(function(categories) {

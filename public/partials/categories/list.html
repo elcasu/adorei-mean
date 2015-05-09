@@ -14,7 +14,7 @@
     <td>{{ category.name }}</td>
     <td>{{ category.description }}</td>
     <td class="list-actions">
-      <a ui-sref="admin.categories_edit({ id: category.id })" class="glyphicon glyphicon-edit" title="Editar"></a>
+      <a ui-sref="admin.categories_edit({ id: category._id })" class="glyphicon glyphicon-edit" title="Editar"></a>
       <a href="" ng-click="removeCategory(category)" class="glyphicon glyphicon-remove" title="Eliminar"></a>
     </td>
   </tr>

@@ -19,7 +19,7 @@ angular.module("services")
           });
         },
         update: function(category) {
-          return $http.put(appConfig.apiUrl + "categories/" + category.id, {
+          return $http.put(appConfig.apiUrl + "categories/" + category._id, {
             category: {
               name: category.name,
               description: category.description
@@ -27,7 +27,7 @@ angular.module("services")
           });
         },
         remove: function(category) {
-          return $http.delete(appConfig.apiUrl + 'categories/' + category.id);
+          return $http.delete(appConfig.apiUrl + 'categories/' + category._id);
         }
       };
     }
