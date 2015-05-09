@@ -3,45 +3,38 @@
 angular.module("controllers")
 
   // Product list
-  .controller("ProductListCtrl", ['$scope', '$modal', 'StockApiClient',
-    function($scope, $modal, StockApiClient) {
-      function getProducts() {
-        StockApiClient.getProducts().success(function(products) {
-          $scope.products = products;
-        });
-      };
-
+  .controller("ProductListCtrl", ['$scope', '$state', '$modal', 'Product',
+    function($scope, $state, $modal, Product) {
       $scope.removeProduct = function(product) {
         var modalInstance = $modal.open({
           templateUrl: 'partials/shared/modal_confirm.html',
           controller: 'ModalConfirmCtrl'
         });
         modalInstance.result.then(function() {
-          StockApiClient.removeProduct(product).then(function(response) {
-            getProducts();
+          Product.remove(product).then(function(response) {
+            $state.reload();
             modalInstance.close();
           });
         }, function() {
           modalInstance.close();
         });
       }
-      getProducts();
+      Product.all().success(function(products) {
+        $scope.products = products;
+      });
     }
   ])
 
   // New product
-  .controller("ProductNewCtrl", ['$scope', '$window', '$state', 'StockApiClient', 'ImageUploader', 'appConfig',
-    function($scope, $window, $state, StockApiClient, ImageUploader, appConfig) {
-      function getCategories() {
-        StockApiClient.getCategories().success(function(categories) {
-          $scope.categories = categories;
-        });
-      }
+  .controller("ProductNewCtrl", ['$scope', '$window', '$state', 'Category', 'Product', 'ImageUploader', 'appConfig',
+    function($scope, $window, $state, Category, Product, ImageUploader, appConfig) {
       $scope.addProduct = function(product) {
         StockApiClient.addProduct(product);
         $window.location.assign($state.href("admin.products"));
       }
-      getCategories();
+      Category.all().success(function(categories) {
+        $scope.categories = categories;
+      });
       $scope.product = {};
       $scope.uploader = ImageUploader.getUploader(function(item, response) {
         $scope.product.tmp_image = response.tmp;
@@ -52,19 +45,15 @@ angular.module("controllers")
   // Edit product
   .controller("ProductEditCtrl", ['$scope', '$stateParams', '$window', '$state', 'StockApiClient', 'ImageUploader',
     function($scope, $stateParams, $window, $state, StockApiClient, ImageUploader) {
-      function getCategories() {
-        StockApiClient.getCategories().success(function(categories) {
-          $scope.categories = categories;
-        });
-      }
-
       $scope.productLoaded = false;
       $scope.updateProduct = function(product) {
         StockApiClient.updateProduct(product);
         $window.location.assign($state.href('admin.products'));
       }
-      getCategories();
-      StockApiClient.getProduct($stateParams.id).success(function(product) {
+      Category.all().success(function(categories) {
+        $scope.categories = categories;
+      });
+      Product.find($stateParams.id).success(function(product) {
         $scope.product = product;
         $scope.productLoaded = true;
         angular.forEach($scope.categories, function(category) {

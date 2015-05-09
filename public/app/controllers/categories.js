@@ -3,10 +3,10 @@
 angular.module("controllers")
 
   // Category list
-  .controller("CategoryListCtrl", ['$scope', '$modal', 'StockApiClient',
-    function($scope, $modal, StockApiClient) {
+  .controller("CategoryListCtrl", ['$scope', '$modal', 'Category',
+    function($scope, $modal, Category) {
       function getCategories() {
-        StockApiClient.getCategories().success(function(categories) {
+        Category.all().success(function(categories) {
           $scope.categories = categories;
         });
       }
