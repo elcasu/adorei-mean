@@ -7,11 +7,13 @@
 <table class="table" ng-controller="ProductListCtrl">
   <tr>
     <th>Nombre</th>
+    <th>Categor&iacute;a</th>
     <th>Precio de venta</th>
     <th>Acciones</th>
   </tr>
   <tr ng-repeat="product in products">
     <td>{{ product.name }}</td>
+    <td>{{ product.category.name }}</td>
     <td>${{ product.price }}</td>
     <td class="list-actions">
       <a ui-sref="admin.products_edit({ id: product._id })" class="glyphicon glyphicon-edit" title="Editar"></a>
