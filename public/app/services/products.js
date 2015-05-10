@@ -14,20 +14,15 @@ angular.module("services")
           return $http.delete(appConfig.apiUrl + 'products/' + product._id);
         },
         create: function(product) {
+          product.category_id = product.category._id;
           $http.post(appConfig.apiUrl + "products", {
-            product: {
-              name: product.name,
-              category_id: product.category._id,
-              price: product.price
-            },
-            tmp_image: product.tmp_image
+            product: product
           });
         },
         update: function(product) {
           product.category_id = product.category._id;
           $http.put(appConfig.apiUrl + "products/" + product._id, {
-            product: product,
-            tmp_image: product.tmp_image
+            product: product
           });
         }
       };

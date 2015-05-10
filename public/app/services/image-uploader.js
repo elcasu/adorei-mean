@@ -10,10 +10,7 @@ angular.module("services")
           return new FileUploader({
             url: appConfig.apiUrl + 'upload',
             headers: {
-              'access-token': ipCookie('access-token'),
-              'token-type': ipCookie('token-type'),
-              'client': ipCookie('client'),
-              'uid': ipCookie('uid')
+              'access-token': ipCookie('access-token')
             },
             onSuccessItem: callback,
             autoUpload: true

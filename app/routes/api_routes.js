@@ -32,5 +32,11 @@ module.exports = function(handlers) {
   apiRouter.put('/products/:product_id', handlers.productsHandler.update);
   apiRouter.delete('/products/:product_id', handlers.productsHandler.remove);
 
+  // Temporal file uploads
+  apiRouter.post('/upload', handlers.uploadsHandler.uploadTemp);
+
+  // Images routes
+  apiRouter.get('/images/:dim/:image_file', handlers.uploadsHandler.showImage);
+
   return apiRouter;
 }

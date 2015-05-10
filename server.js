@@ -6,13 +6,15 @@ var morgan = require("morgan");
 var mongoose = require("mongoose");
 var jwt = require("jsonwebtoken");
 var config = require("./config");
+var multer = require("multer");
 
 // Define application handlers
 var handlers = {
   usersHandler: require("./app/handlers/usersHandler"),
   productsHandler: require("./app/handlers/productsHandler"),
   categoriesHandler: require("./app/handlers/categoriesHandler"),
-  staticHandler: require("./app/handlers/staticHandler")
+  staticHandler: require("./app/handlers/staticHandler"),
+  uploadsHandler: require("./app/handlers/uploadsHandler")
 };
 
 // Handle requests
@@ -21,6 +23,11 @@ app.use(bodyParser.json());
 
 // Handle CORS requests
 app.use(require("./app/middleware/cors"));
+
+// Handle multipart/form-data requests
+app.use(multer({
+  dest: './uploads/'
+}));
 
 // Set database connection
 mongoose.connect(config.database.development);

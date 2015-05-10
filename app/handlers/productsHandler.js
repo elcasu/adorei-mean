@@ -1,4 +1,5 @@
 var Product = require("../models/product");
+var fs = require("fs");
 
 function create(req, res) {
   var product = new Product();
@@ -21,6 +22,10 @@ function update(req, res) {
     if(req.body.product.category_id) product.category = req.body.product.category_id;
     if(req.body.product.price) product.price = req.body.product.price;
 
+    // Handle uploaded image if any
+    if(req.body.product.tmp_image) {
+      product.image = req.body.product.tmp_image;
+    }
     product.save(function(err) {
       if(err) return res.status(500).send(err);
       res.send(product);

@@ -13,7 +13,7 @@
 <div class="form-group">
   <label for="image">Imagen</label>
   <div ng-show="product.image != ''" class="form-image-wrapper">
-    <img ng-if="productLoaded" auth-src="http://localhost:8888/images/product/{{ product._id }}/200x200?{{ guid }}" width="300" />
+    <img ng-if="productLoaded" auth-src="http://localhost:8888/api/images/200x200/{{ product.image }}" width="300" />
   </div>
   <input name="image" type="file" nv-file-select="" uploader="uploader" ng-hide="uploader.queue.length > 0" />
   <div ng-include="'partials/shared/uploader_template.html'" ng-show="uploader.queue.length > 0"></div>
