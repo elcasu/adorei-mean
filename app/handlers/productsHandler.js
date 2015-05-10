@@ -6,6 +6,12 @@ function create(req, res) {
   product.name = req.body.product.name;
   product.category = req.body.product.category_id;
   product.price = req.body.product.price;
+
+  // Handle uploaded image if any
+  if(req.body.product.tmp_image) {
+    product.image = req.body.product.tmp_image;
+  }
+
   product.save(function(err) {
     if(err) return res.send(err);
     res.send(product);

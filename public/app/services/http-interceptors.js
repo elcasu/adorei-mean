@@ -24,11 +24,6 @@ angular.module("services")
           return req;
         },
         response: function(resp) {
-          if(resp.status == 403) {
-            // If access denied, redirect to login page
-            $window.location.assign($state.href("admin"));
-            return resp;
-          }
           var remoteDomain = getRemoteDomain(resp.config.url);
 
           // Only on backend responses
@@ -36,6 +31,15 @@ angular.module("services")
             if(resp.data.token) {
               ipCookie(tokenParamName, resp.data.token);
             }
+          }
+          return resp;
+        },
+        responseError: function(resp) {
+          console.log(resp.status);
+          if(resp.status == 403) {
+            // If access denied, redirect to login page
+            ipCookie.remove('access-token');
+            $window.location.assign('/');
           }
           return resp;
         }

@@ -3,11 +3,11 @@
 angular.module("controllers")
 
   // Login
-  .controller("SigninCtrl", ['$scope', '$window', '$state', 'flash', 'StockApiClient',
-    function($scope, $window, $state, flash, StockApiClient) {
+  .controller("SigninCtrl", ['$scope', '$window', '$state', 'flash', 'sessionManager',
+    function($scope, $window, $state, flash, sessionManager) {
       $scope.loginForm = {};
       $scope.submitLogin = function() {
-        StockApiClient.submitLogin($scope.loginForm)
+        sessionManager.login($scope.loginForm)
           .then(function(response) {
             $window.location.assign($state.href("admin.products"));
           })

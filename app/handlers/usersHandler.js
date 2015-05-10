@@ -29,7 +29,7 @@ function authenticate(req, res) {
           name: user.name,
           email: user.email
         }, config.secret, {
-          expiresInMinutes: 1440 // expires in 24 hs
+          expiresInMinutes: 43200 // expires in 30 days
         });
         res.json({
           success: true,
